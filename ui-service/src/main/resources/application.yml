@@ -1,0 +1,9 @@
+server:
+  port: 9090
+
+spring:
+  application:
+    name: UI-SERVICE
+  web:
+    resources:
+      static-locations: classpath:/static/

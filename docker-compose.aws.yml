@@ -1,0 +1,135 @@
+version: '3.8'
+
+services:
+  # ─────────────────────────────────────────
+  # AWS NGINX REVERSE PROXY (PUBLIC ENTRYPOINT)
+  # ─────────────────────────────────────────
+  nginx:
+    build:
+      context: ./docker/nginx
+    container_name: flipkart-nginx
+    restart: always
+    ports:
+      - "80:80"
+    depends_on:
+      - ui-service
+      - service-registry
+      - api-gateway
+    networks:
+      - flipkart-net
+
+  # ─────────────────────────────────────────
+  # INFRASTRUCTURE: POSTGRESQL DATABASE
+  # (Can be replaced by AWS RDS connection strings)
+  # ─────────────────────────────────────────
+  postgres:
+    image: postgres:15-alpine
+    container_name: flipkart-postgres
+    restart: always
+    environment:
+      POSTGRES_USER: ${DB_USER:-flipkart}
+      POSTGRES_PASSWORD: ${DB_PASSWORD:-flipkart123}
+      POSTGRES_DB: postgres
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+      - ./docker/postgres/init-dbs.sh:/docker-entrypoint-initdb.d/init-dbs.sh
+    ports:
+      - "5432:5432"
+    networks:
+      - flipkart-net
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U flipkart"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  # ─────────────────────────────────────────
+  # CORE SERVICES
+  # ─────────────────────────────────────────
+  service-registry:
+    build:
+      context: ./service-registry
+    container_name: flipkart-eureka
+    restart: always
+    environment:
+      JAVA_OPTS: "-Xms128m -Xmx256m"
+    ports:
+      - "8761:8761"
+    networks:
+      - flipkart-net
+
+  api-gateway:
+    build:
+      context: ./api-gateway
+    container_name: flipkart-gateway
+    restart: always
+    environment:
+      JAVA_OPTS: "-Xms128m -Xmx256m"
+      EUREKA_CLIENT_SERVICEURL_DEFAULTZONE: http://service-registry:8761/eureka/
+    ports:
+      - "8080:8080"
+    depends_on:
+      - service-registry
+    networks:
+      - flipkart-net
+
+  # ─────────────────────────────────────────
+  # FRONTEND UI WEB APPLICATION
+  # ─────────────────────────────────────────
+  ui-service:
+    build:
+      context: ./ui-service
+    container_name: flipkart-ui
+    restart: always
+    environment:
+      JAVA_OPTS: "-Xms128m -Xmx256m"
+    ports:
+      - "9090:9090"
+    networks:
+      - flipkart-net
+
+  # ─────────────────────────────────────────
+  # BUSINESS MICROSERVICES
+  # ─────────────────────────────────────────
+  user-service:
+    build:
+      context: ./user-service
+    container_name: flipkart-user-service
+    restart: always
+    environment:
+      JAVA_OPTS: "-Xms128m -Xmx256m"
+      SPRING_DATASOURCE_URL: ${USER_DB_URL:-jdbc:h2:mem:userdb;DB_CLOSE_DELAY=-1}
+      SPRING_DATASOURCE_USERNAME: ${DB_USER:-sa}
+      SPRING_DATASOURCE_PASSWORD: ${DB_PASSWORD:-}
+      EUREKA_CLIENT_SERVICEURL_DEFAULTZONE: http://service-registry:8761/eureka/
+    ports:
+      - "8081:8081"
+    depends_on:
+      - service-registry
+    networks:
+      - flipkart-net
+
+  product-service:
+    build:
+      context: ./product-service
+    container_name: flipkart-product-service
+    restart: always
+    environment:
+      JAVA_OPTS: "-Xms128m -Xmx256m"
+      SPRING_DATASOURCE_URL: ${PRODUCT_DB_URL:-jdbc:h2:mem:productdb;DB_CLOSE_DELAY=-1}
+      SPRING_DATASOURCE_USERNAME: ${DB_USER:-sa}
+      SPRING_DATASOURCE_PASSWORD: ${DB_PASSWORD:-}
+      EUREKA_CLIENT_SERVICEURL_DEFAULTZONE: http://service-registry:8761/eureka/
+    ports:
+      - "8082:8082"
+    depends_on:
+      - service-registry
+    networks:
+      - flipkart-net
+
+networks:
+  flipkart-net:
+    driver: bridge
+
+volumes:
+  postgres_data:

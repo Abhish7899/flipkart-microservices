@@ -1,0 +1,52 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: flipkart-ingress
+  namespace: flipkart-prod
+  annotations:
+    kubernetes.io/ingress.class: nginx
+    nginx.ingress.kubernetes.io/ssl-redirect: "false" # Set true once TLS cert is provisioned
+    nginx.ingress.kubernetes.io/proxy-body-size: "20m"
+    nginx.ingress.kubernetes.io/proxy-read-timeout: "60"
+    cert-manager.io/cluster-issuer: "letsencrypt-prod"
+spec:
+  # Uncomment tls block when domain & cert-manager are configured
+  # tls:
+  #   - hosts:
+  #       - flipkart.yourdomain.com
+  #     secretName: flipkart-tls-secret
+  rules:
+    - http:
+        paths:
+          # Frontend UI route
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: ui-service
+                port:
+                  number: 9090
+          # API Gateway Route
+          - path: /api
+            pathType: Prefix
+            backend:
+              service:
+                name: api-gateway
+                port:
+                  number: 8080
+          # Service Registry (Eureka Dashboard)
+          - path: /eureka
+            pathType: Prefix
+            backend:
+              service:
+                name: service-registry
+                port:
+                  number: 8761
+          # Grafana Monitoring Dashboard
+          - path: /monitoring
+            pathType: Prefix
+            backend:
+              service:
+                name: grafana
+                port:
+                  number: 3000

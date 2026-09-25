@@ -1,0 +1,1741 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="referrer" content="no-referrer" />
+  <title>Online Shopping Site for Mobiles, Electronics, Furniture, Grocery, Lifestyle, Books & More. Best Offers!</title>
+  <link rel="icon" href="https://static-assets-web.flixcart.com/batman-returns/batman-returns/p/images/fk_favicon_icons-eed5a0.ico">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --fk-blue: #2874f0;
+      --fk-blue-dark: #1255cc;
+      --fk-yellow: #ffe500;
+      --fk-orange: #fb641b;
+      --fk-orange-dark: #e05510;
+      --fk-green: #388e3c;
+      --fk-green-bg: #e8f5e9;
+      --fk-bg: #f1f3f6;
+      --fk-text: #212121;
+      --fk-sub: #878787;
+      --fk-border: #e0e0e0;
+      --fk-card-shadow: 0 1px 4px rgba(0,0,0,0.08);
+      --fk-hover-shadow: 0 8px 24px rgba(0,0,0,0.12);
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; background: var(--fk-bg); color: var(--fk-text); line-height: 1.4; }
+
+    /* ── HEADER NAVBAR ── */
+    .fk-navbar {
+      background: var(--fk-blue);
+      position: sticky; top: 0; z-index: 1000;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.18);
+    }
+    .fk-nav-wrap {
+      max-width: 1400px; margin: 0 auto; padding: 10px 24px;
+      display: flex; align-items: center; gap: 24px;
+    }
+    .fk-brand {
+      cursor: pointer; display: flex; flex-direction: column; text-decoration: none; flex-shrink: 0;
+    }
+    .fk-brand-name {
+      color: #fff; font-size: 22px; font-weight: 800; font-style: italic; letter-spacing: -0.5px; line-height: 1;
+    }
+    .fk-brand-sub {
+      color: #fff; font-size: 11px; font-weight: 600; font-style: italic; display: flex; align-items: center; gap: 3px; margin-top: 2px;
+    }
+    .fk-brand-sub span { color: var(--fk-yellow); font-weight: 700; }
+
+    /* Search Bar */
+    .fk-search-wrap {
+      flex: 1; max-width: 660px; position: relative;
+    }
+    .fk-search-bar {
+      display: flex; background: #fff; border-radius: 4px; overflow: hidden;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.1); align-items: center;
+    }
+    .fk-search-bar input {
+      flex: 1; border: none; outline: none; padding: 11px 16px; font-size: 14px;
+    }
+    .fk-search-bar button {
+      background: none; border: none; padding: 0 18px; font-size: 18px; cursor: pointer; color: var(--fk-blue);
+    }
+
+    /* Actions */
+    .fk-nav-actions {
+      display: flex; align-items: center; gap: 16px; margin-left: auto;
+    }
+    .fk-login-btn {
+      background: #fff; color: var(--fk-blue); font-weight: 700; font-size: 14px;
+      padding: 7px 24px; border-radius: 2px; border: 1px solid #dbdbdb; cursor: pointer;
+      text-decoration: none; display: inline-flex; align-items: center; gap: 6px;
+      transition: all 0.2s;
+    }
+    .fk-login-btn:hover { background: #fbfbfb; box-shadow: 0 2px 8px rgba(0,0,0,0.12); }
+    .fk-nav-tab {
+      color: #fff; text-decoration: none; font-size: 14px; font-weight: 600; cursor: pointer;
+      display: flex; align-items: center; gap: 6px; padding: 6px 12px; border-radius: 4px;
+      transition: background 0.2s;
+    }
+    .fk-nav-tab:hover { background: rgba(255,255,255,0.15); }
+    .fk-badge-count {
+      background: var(--fk-orange); color: #fff; font-size: 11px; font-weight: 800;
+      border-radius: 12px; padding: 2px 7px; margin-left: 2px;
+    }
+
+    /* ── CATEGORY RIBBON ── */
+    .fk-category-ribbon {
+      background: #fff; box-shadow: 0 1px 3px rgba(0,0,0,0.08); margin-bottom: 14px;
+    }
+    .fk-category-inner {
+      max-width: 1400px; margin: 0 auto; display: flex; justify-content: space-between;
+      padding: 12px 24px; overflow-x: auto; scrollbar-width: none;
+    }
+    .fk-category-inner::-webkit-scrollbar { display: none; }
+    .fk-cat-pill {
+      display: flex; flex-direction: column; align-items: center; cursor: pointer;
+      padding: 4px 14px; color: var(--fk-text); font-size: 13px; font-weight: 600;
+      border-radius: 6px; transition: all 0.2s; flex-shrink: 0;
+    }
+    .fk-cat-pill:hover { transform: translateY(-2px); color: var(--fk-blue); }
+    .fk-cat-pill.active { color: var(--fk-blue); border-bottom: 3px solid var(--fk-blue); }
+    .fk-cat-pill-icon { font-size: 26px; height: 36px; display: flex; align-items: center; }
+
+    /* ── MAIN CONTAINER ── */
+    .fk-main {
+      max-width: 1400px; margin: 0 auto; padding: 0 16px 50px;
+    }
+
+    /* ── HERO BANNER CAROUSEL ── */
+    .fk-carousel-wrap {
+      position: relative; overflow: hidden; border-radius: 6px; margin-bottom: 16px;
+      box-shadow: 0 4px 16px rgba(0,0,0,0.1);
+    }
+    .fk-hero {
+      background: linear-gradient(135deg, #1e3c72 0%, #2a5298 50%, #2874f0 100%);
+      padding: 34px 44px; color: #fff; display: flex; align-items: center; justify-content: space-between;
+      transition: all 0.4s ease;
+    }
+    .fk-hero-tag {
+      background: var(--fk-yellow); color: #111; font-size: 11px; font-weight: 800;
+      padding: 4px 12px; border-radius: 3px; display: inline-block; margin-bottom: 10px;
+    }
+    .fk-hero h1 { font-size: 32px; font-weight: 800; margin-bottom: 8px; letter-spacing: -0.5px; }
+    .fk-hero p { font-size: 15px; opacity: 0.92; margin-bottom: 16px; }
+    .fk-hero-btn {
+      background: var(--fk-yellow); color: #111; font-weight: 700; font-size: 14px;
+      border: none; padding: 11px 26px; border-radius: 3px; cursor: pointer;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.2); transition: all 0.2s;
+    }
+    .fk-hero-btn:hover { background: #ffe933; transform: scale(1.02); }
+
+    /* ── DEAL OF DAY STRIP ── */
+    .fk-strip {
+      background: #fff; border-radius: 4px; padding: 14px 20px; margin-bottom: 16px;
+      display: flex; align-items: center; justify-content: space-between;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.06);
+    }
+    .fk-strip-title { font-size: 18px; font-weight: 700; display: flex; align-items: center; gap: 8px; }
+    .fk-timer {
+      background: #e3f2fd; color: var(--fk-blue); font-size: 12px; font-weight: 700;
+      padding: 3px 10px; border-radius: 12px; margin-left: 10px;
+    }
+
+    /* ── CONTROLS & FILTERS ── */
+    .fk-controls {
+      background: #fff; border-radius: 4px; padding: 12px 20px; margin-bottom: 16px;
+      display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 10px;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.06);
+    }
+    .fk-chips { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
+    .fk-chip {
+      background: #f1f3f6; color: var(--fk-text); border: 1px solid #dedede;
+      padding: 6px 14px; border-radius: 20px; font-size: 12px; font-weight: 600; cursor: pointer;
+      transition: all 0.15s;
+    }
+    .fk-chip:hover { border-color: var(--fk-blue); color: var(--fk-blue); }
+    .fk-chip.active { background: #e3f2fd; border-color: var(--fk-blue); color: var(--fk-blue); }
+    .fk-select {
+      border: 1px solid #ccc; padding: 7px 12px; border-radius: 4px; font-size: 13px; font-weight: 600; outline: none; background: #fff;
+    }
+
+    /* ── PRODUCT GRID ── */
+    .fk-grid {
+      display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 16px; margin-bottom: 30px;
+    }
+    .fk-card {
+      background: #fff; border-radius: 4px; padding: 16px; display: flex; flex-direction: column;
+      box-shadow: var(--fk-card-shadow); transition: all 0.2s; cursor: pointer; position: relative;
+    }
+    .fk-card:hover {
+      box-shadow: var(--fk-hover-shadow); transform: translateY(-3px);
+    }
+    .fk-discount-tag {
+      position: absolute; top: 12px; left: 12px; background: var(--fk-green); color: #fff;
+      font-size: 11px; font-weight: 800; padding: 3px 6px; border-radius: 3px; z-index: 2;
+    }
+    .fk-card-heart {
+      position: absolute; top: 12px; right: 12px; background: rgba(255,255,255,0.9);
+      width: 28px; height: 28px; border-radius: 50%; display: flex; align-items: center; justify-content: center;
+      font-size: 15px; color: #b0b0b0; cursor: pointer; transition: all 0.15s; z-index: 2;
+    }
+    .fk-card-heart:hover, .fk-card-heart.active { color: #f44336; transform: scale(1.15); }
+
+    .fk-img-box {
+      width: 100%; height: 200px; display: flex; align-items: center; justify-content: center;
+      margin-bottom: 14px; position: relative; overflow: hidden; border-radius: 4px; background: #fbfbfb;
+    }
+    .fk-img-box img {
+      max-width: 100%; max-height: 100%; object-fit: contain; transition: transform 0.25s;
+    }
+    .fk-card:hover .fk-img-box img { transform: scale(1.06); }
+
+    .fk-brand-lbl {
+      font-size: 11px; font-weight: 700; color: var(--fk-sub); text-transform: uppercase; margin-bottom: 4px;
+    }
+    .fk-title-lbl {
+      font-size: 14px; font-weight: 600; color: var(--fk-text); line-height: 1.35;
+      height: 38px; overflow: hidden; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; margin-bottom: 6px;
+    }
+    .fk-rating-row {
+      display: flex; align-items: center; gap: 8px; margin-bottom: 8px;
+    }
+    .fk-star-chip {
+      background: var(--fk-green); color: #fff; font-size: 12px; font-weight: 700;
+      padding: 2px 6px; border-radius: 3px; display: inline-flex; align-items: center; gap: 3px;
+    }
+    .fk-reviews-lbl {
+      font-size: 12px; color: var(--fk-sub); font-weight: 500;
+    }
+    .fk-assured-badge {
+      font-size: 11px; color: var(--fk-blue); font-weight: 700; margin-left: auto;
+    }
+
+    .fk-price-box {
+      margin-top: auto; padding-top: 10px;
+    }
+    .fk-price-row {
+      display: flex; align-items: baseline; gap: 8px; flex-wrap: wrap; margin-bottom: 4px;
+    }
+    .fk-now-price { font-size: 19px; font-weight: 800; color: var(--fk-text); }
+    .fk-old-price { font-size: 13px; color: var(--fk-sub); text-decoration: line-through; }
+    .fk-disc-text { font-size: 13px; font-weight: 700; color: var(--fk-green); }
+    .fk-free-del { font-size: 12px; color: #2e7d32; font-weight: 600; margin-bottom: 12px; }
+
+    .fk-card-btns {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 8px;
+    }
+    .fk-add-cart-btn {
+      background: #ff9f00; color: #fff; font-weight: 700; font-size: 12px; border: none;
+      padding: 9px; border-radius: 2px; cursor: pointer; transition: background 0.15s;
+    }
+    .fk-add-cart-btn:hover { background: #e89100; }
+    .fk-buy-now-btn {
+      background: var(--fk-orange); color: #fff; font-weight: 700; font-size: 12px; border: none;
+      padding: 9px; border-radius: 2px; cursor: pointer; transition: background 0.15s;
+    }
+    .fk-buy-now-btn:hover { background: var(--fk-orange-dark); }
+
+    /* ── CART PAGE (LIKE FLIPKART) ── */
+    .fk-cart-container {
+      display: grid; grid-template-columns: 1fr 380px; gap: 20px; align-items: flex-start;
+    }
+    .fk-cart-card {
+      background: #fff; border-radius: 4px; box-shadow: var(--fk-card-shadow); margin-bottom: 16px;
+    }
+    .fk-delivery-pincode-header {
+      padding: 14px 20px; border-bottom: 1px solid #f0f0f0; display: flex; align-items: center; justify-content: space-between;
+    }
+    .fk-cart-item-row {
+      display: flex; gap: 20px; padding: 20px; border-bottom: 1px solid #f0f0f0; position: relative;
+    }
+    .fk-cart-item-img {
+      width: 100px; height: 100px; object-fit: contain; flex-shrink: 0;
+    }
+    .fk-cart-item-details { flex: 1; }
+    .fk-cart-item-title { font-size: 15px; font-weight: 600; margin-bottom: 4px; }
+    .fk-cart-seller { font-size: 12px; color: var(--fk-sub); margin-bottom: 8px; }
+    .fk-cart-delivery-date { font-size: 13px; color: var(--fk-text); font-weight: 500; margin-top: 6px; }
+    .fk-cart-qty-wrap {
+      display: flex; align-items: center; gap: 12px; margin-top: 14px;
+    }
+    .fk-qty-btn {
+      width: 28px; height: 28px; border-radius: 50%; border: 1px solid #c2c2c2; background: #fff;
+      font-weight: 700; cursor: pointer; display: flex; align-items: center; justify-content: center;
+    }
+    .fk-cart-action-btn {
+      background: none; border: none; font-size: 14px; font-weight: 600; cursor: pointer; text-transform: uppercase; color: var(--fk-text);
+      transition: color 0.15s;
+    }
+    .fk-cart-action-btn:hover { color: var(--fk-blue); }
+    .fk-cart-action-btn.remove:hover { color: #d32f2f; }
+
+    /* Price Details Sidebar */
+    .fk-price-sidebar {
+      background: #fff; border-radius: 4px; box-shadow: var(--fk-card-shadow); padding: 20px; position: sticky; top: 80px;
+    }
+    .fk-price-title {
+      font-size: 15px; font-weight: 700; color: #878787; text-transform: uppercase; border-bottom: 1px solid #f0f0f0; padding-bottom: 12px; margin-bottom: 16px;
+    }
+    .fk-price-row-item {
+      display: flex; justify-content: space-between; margin-bottom: 12px; font-size: 14px;
+    }
+    .fk-coupon-box {
+      display: flex; gap: 8px; margin: 16px 0; border: 1px dashed #2874f0; padding: 10px; border-radius: 4px; background: #f4f8ff;
+    }
+    .fk-coupon-box input {
+      flex: 1; border: 1px solid #c2c2c2; padding: 8px 10px; border-radius: 2px; font-size: 13px; text-transform: uppercase; outline: none;
+    }
+    .fk-coupon-box button {
+      background: var(--fk-blue); color: #fff; border: none; padding: 0 14px; border-radius: 2px; font-weight: 700; cursor: pointer;
+    }
+
+    /* ── CHECKOUT STEPPER (ACCORDION LIKE FLIPKART) ── */
+    .fk-checkout-wrap {
+      max-width: 900px; margin: 0 auto;
+    }
+    .fk-step-card {
+      background: #fff; border-radius: 4px; box-shadow: var(--fk-card-shadow); margin-bottom: 14px; overflow: hidden;
+    }
+    .fk-step-header {
+      padding: 16px 20px; background: #fff; display: flex; align-items: center; justify-content: space-between; cursor: pointer;
+      border-bottom: 1px solid #f0f0f0;
+    }
+    .fk-step-header.active {
+      background: var(--fk-blue); color: #fff;
+    }
+    .fk-step-num {
+      background: #f0f0f0; color: var(--fk-blue); width: 24px; height: 24px; border-radius: 2px;
+      display: inline-flex; align-items: center; justify-content: center; font-size: 12px; font-weight: 700; margin-right: 12px;
+    }
+    .fk-step-header.active .fk-step-num {
+      background: #fff; color: var(--fk-blue);
+    }
+    .fk-step-title {
+      font-size: 15px; font-weight: 700; text-transform: uppercase; display: flex; align-items: center;
+    }
+    .fk-step-body {
+      padding: 20px; display: none;
+    }
+    .fk-step-body.active { display: block; }
+
+    /* Address Form */
+    .fk-addr-grid {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin-bottom: 16px;
+    }
+    .fk-input-group label {
+      display: block; font-size: 12px; color: var(--fk-sub); margin-bottom: 4px; font-weight: 600;
+    }
+    .fk-input-group input, .fk-input-group textarea, .fk-input-group select {
+      width: 100%; border: 1px solid #ccc; padding: 10px 12px; border-radius: 3px; font-size: 14px; outline: none;
+    }
+    .fk-input-group input:focus, .fk-input-group textarea:focus { border-color: var(--fk-blue); }
+
+    /* Payment Options */
+    .fk-pay-option {
+      border: 1px solid #e0e0e0; border-radius: 4px; padding: 14px 18px; margin-bottom: 12px; cursor: pointer;
+      display: flex; align-items: center; gap: 12px; transition: border-color 0.2s;
+    }
+    .fk-pay-option:hover, .fk-pay-option.selected {
+      border-color: var(--fk-blue); background: #f8fafc;
+    }
+
+    /* ── ORDERS PAGE WITH EKART TRACKING ── */
+    .fk-order-card {
+      background: #fff; border-radius: 4px; box-shadow: var(--fk-card-shadow); padding: 20px; margin-bottom: 16px;
+    }
+    .fk-tracker-stepper {
+      display: flex; justify-content: space-between; position: relative; margin: 24px 0 16px;
+    }
+    .fk-tracker-stepper::before {
+      content: ''; position: absolute; top: 12px; left: 30px; right: 30px; height: 3px; background: #e0e0e0; z-index: 1;
+    }
+    .fk-tracker-stepper.step-2::before {
+      background: linear-gradient(to right, #388e3c 0%, #388e3c 50%, #e0e0e0 50%, #e0e0e0 100%);
+    }
+    .fk-tracker-stepper.step-4::before {
+      background: #388e3c;
+    }
+    .fk-track-point {
+      position: relative; z-index: 2; text-align: center; flex: 1;
+    }
+    .fk-track-dot {
+      width: 26px; height: 26px; border-radius: 50%; background: #e0e0e0; color: #fff;
+      display: flex; align-items: center; justify-content: center; margin: 0 auto 6px; font-size: 12px; font-weight: 700;
+    }
+    .fk-track-dot.done { background: var(--fk-green); }
+    .fk-track-lbl { font-size: 12px; font-weight: 600; color: var(--fk-text); }
+    .fk-track-sub { font-size: 11px; color: var(--fk-sub); }
+
+    /* ── PRODUCT DETAIL MODAL ── */
+    .fk-modal {
+      position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+      background: rgba(0,0,0,0.7); display: none; align-items: center; justify-content: center;
+      z-index: 2000; padding: 20px;
+    }
+    .fk-modal.open { display: flex; }
+    .fk-modal-inner {
+      background: #fff; width: 100%; max-width: 960px; max-height: 90vh;
+      border-radius: 6px; overflow-y: auto; padding: 28px; position: relative;
+      display: grid; grid-template-columns: 380px 1fr; gap: 32px;
+      box-shadow: 0 10px 40px rgba(0,0,0,0.3);
+    }
+    .fk-modal-x {
+      position: absolute; top: 14px; right: 18px; font-size: 28px; border: none;
+      background: none; cursor: pointer; color: #888;
+    }
+    .fk-modal-img-wrap {
+      display: flex; flex-direction: column; align-items: center;
+    }
+    .fk-modal-img-wrap img {
+      width: 100%; max-height: 350px; object-fit: contain; margin-bottom: 20px; border-radius: 4px;
+    }
+    .fk-spec-item {
+      display: flex; gap: 8px; margin-bottom: 6px; font-size: 13px; color: #444; line-height: 1.5;
+    }
+    .fk-offer-card {
+      background: #f8fafc; border-left: 3px solid var(--fk-green); padding: 8px 12px;
+      margin: 8px 0; font-size: 13px; color: #333; border-radius: 0 4px 4px 0;
+    }
+    .fk-pincode-box {
+      display: flex; gap: 8px; margin: 12px 0; max-width: 320px;
+    }
+    .fk-pincode-box input {
+      flex: 1; border: 1px solid #ccc; padding: 8px 12px; border-radius: 3px; font-size: 13px; outline: none;
+    }
+    .fk-pincode-box button {
+      background: var(--fk-blue); color: #fff; border: none; padding: 0 16px; border-radius: 3px; font-weight: 600; cursor: pointer;
+    }
+
+    /* ── TOAST ── */
+    .fk-toast {
+      position: fixed; bottom: 24px; right: 24px; background: #212121; color: #fff;
+      padding: 12px 22px; border-radius: 4px; font-size: 14px; font-weight: 500;
+      box-shadow: 0 4px 16px rgba(0,0,0,0.3); z-index: 3000; display: none; align-items: center; gap: 10px;
+    }
+    .fk-toast.show { display: flex; animation: slideUp 0.3s ease; }
+    @keyframes slideUp { from { transform: translateY(30px); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
+
+    /* ── VIEW CONTROL ── */
+    .fk-view { display: none; }
+    .fk-view.active { display: block; }
+
+    @media (max-width: 800px) {
+      .fk-modal-inner, .fk-cart-container { grid-template-columns: 1fr; }
+      .fk-hero { flex-direction: column; text-align: center; }
+      .fk-nav-wrap { flex-wrap: wrap; }
+      .fk-search-wrap { order: 3; max-width: 100%; width: 100%; }
+      .fk-addr-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ══════════════ NAVBAR ══════════════ -->
+  <header class="fk-navbar">
+    <div class="fk-nav-wrap">
+      <div class="fk-brand" onclick="openView('home')">
+        <div class="fk-brand-name">Flipkart</div>
+        <div class="fk-brand-sub">Explore <span>Plus</span> <span style="color:var(--fk-yellow)">✦</span></div>
+      </div>
+
+      <div class="fk-search-wrap">
+        <div class="fk-search-bar">
+          <input type="text" id="searchInput" placeholder="Search for products, brands and more (e.g. iPhone, Laptop, Shoes, Watch)..." oninput="debounceSearch()" onkeydown="if(event.key==='Enter')triggerSearch()" />
+          <button onclick="triggerSearch()">🔍</button>
+        </div>
+      </div>
+
+      <div class="fk-nav-actions">
+        <button class="fk-login-btn" onclick="openView('auth')">
+          <span>👤</span> <span id="loginBtnLabel">Login</span>
+        </button>
+
+        <a class="fk-nav-tab" onclick="openView('orders')">
+          <span>📋</span> <span>Orders</span>
+        </a>
+
+        <a class="fk-nav-tab" onclick="openView('cart')">
+          <span>🛒</span> <span>Cart</span>
+          <span class="fk-badge-count" id="cartCountBadge">0</span>
+        </a>
+
+        <a class="fk-nav-tab" onclick="openView('services')">
+          <span>📊</span> <span>Services</span>
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <!-- ══════════════ CATEGORY RIBBON ══════════════ -->
+  <nav class="fk-category-ribbon">
+    <div class="fk-category-inner" id="categoryRibbon">
+      <div class="fk-cat-pill active" onclick="setCategory('all')">
+        <div class="fk-cat-pill-icon">🛍️</div>All Products
+      </div>
+      <div class="fk-cat-pill" onclick="setCategory('Mobiles')">
+        <div class="fk-cat-pill-icon">📱</div>Mobiles
+      </div>
+      <div class="fk-cat-pill" onclick="setCategory('Electronics')">
+        <div class="fk-cat-pill-icon">💻</div>Electronics
+      </div>
+      <div class="fk-cat-pill" onclick="setCategory('Fashion')">
+        <div class="fk-cat-pill-icon">👗</div>Fashion & Footwear
+      </div>
+      <div class="fk-cat-pill" onclick="setCategory('Appliances')">
+        <div class="fk-cat-pill-icon">🏠</div>Home & Kitchen
+      </div>
+      <div class="fk-cat-pill" onclick="setCategory('Beauty')">
+        <div class="fk-cat-pill-icon">💄</div>Beauty & Perfumes
+      </div>
+      <div class="fk-cat-pill" onclick="setCategory('Books')">
+        <div class="fk-cat-pill-icon">📚</div>Books & Gaming
+      </div>
+    </div>
+  </nav>
+
+  <!-- ══════════════ VIEW: HOME / PRODUCTS ══════════════ -->
+  <main class="fk-main fk-view active" id="view-home">
+
+    <!-- Big Billion Days Hero -->
+    <div class="fk-carousel-wrap">
+      <div class="fk-hero" id="heroBanner">
+        <div>
+          <span class="fk-hero-tag">⚡ BIG BILLION DAYS LIVE FESTIVAL SALE</span>
+          <h1>India's Biggest E-Commerce Deals</h1>
+          <p>Extra 10% Instant Discount on HDFC, ICICI & Axis Cards • No Cost EMI Available</p>
+          <button class="fk-hero-btn" onclick="setCategory('all')">Shop All 200+ Deals →</button>
+        </div>
+        <div style="font-size:80px;">🛍️✨</div>
+      </div>
+    </div>
+
+    <!-- Deal Strip -->
+    <div class="fk-strip">
+      <div class="fk-strip-title">
+        <span>🔥 Flipkart Deal of the Day</span>
+        <span class="fk-timer" id="clockDisplay">04h : 18m : 42s remaining</span>
+      </div>
+      <span style="font-size:13px; color:#2e7d32; font-weight:700;">✦ Free Express Delivery on orders above ₹499</span>
+    </div>
+
+    <!-- Controls -->
+    <div class="fk-controls">
+      <div class="fk-chips">
+        <span style="font-size:13px; font-weight:700; margin-right:4px;">Filter:</span>
+        <button class="fk-chip active" onclick="setCategory('all')">All (<span id="totalItemsBadge">0</span>)</button>
+        <button class="fk-chip" onclick="setCategory('Mobiles')">📱 Mobiles</button>
+        <button class="fk-chip" onclick="setCategory('Electronics')">💻 Laptops & Audio</button>
+        <button class="fk-chip" onclick="setCategory('Fashion')">👔 Fashion & Shoes</button>
+        <button class="fk-chip" onclick="setCategory('Appliances')">🏠 Appliances</button>
+        <button class="fk-chip" onclick="setCategory('Beauty')">💄 Beauty & Scents</button>
+        <button class="fk-chip" onclick="setCategory('Books')">📚 Books</button>
+      </div>
+
+      <div style="display:flex; align-items:center; gap:8px;">
+        <span style="font-size:13px; color:#666;">Sort by:</span>
+        <select class="fk-select" id="sortSelect" onchange="renderProducts()">
+          <option value="relevance">Relevance</option>
+          <option value="price-asc">Price: Low to High</option>
+          <option value="price-desc">Price: High to Low</option>
+          <option value="rating">Customer Rating</option>
+        </select>
+      </div>
+    </div>
+
+    <!-- Search feedback -->
+    <div id="searchNotice" style="margin-bottom:12px; font-size:13px; color:#555; display:none;"></div>
+
+    <!-- Products Grid -->
+    <div class="fk-grid" id="productGrid"></div>
+  </main>
+
+  <!-- ══════════════ VIEW: CART (IMPROVED FLIPKART STYLE) ══════════════ -->
+  <div class="fk-main fk-view" id="view-cart">
+    <div class="fk-cart-container">
+      <div>
+        <!-- Delivery Address Bar -->
+        <div class="fk-cart-card">
+          <div class="fk-delivery-pincode-header">
+            <div>
+              <span style="font-size:13px; color:var(--fk-sub);">Deliver to: </span>
+              <span style="font-weight:700; font-size:14px;" id="cartDelivName">Rahul Sharma, 560001</span>
+              <span style="background:#f0f0f0; font-size:11px; font-weight:700; padding:2px 6px; border-radius:2px; margin-left:6px;">HOME</span>
+            </div>
+            <button style="border:1px solid #e0e0e0; background:#fff; color:var(--fk-blue); font-weight:700; font-size:13px; padding:6px 14px; border-radius:2px; cursor:pointer;" onclick="openView('checkout')">CHANGE</button>
+          </div>
+        </div>
+
+        <!-- Cart Items List -->
+        <div class="fk-cart-card">
+          <div style="padding:16px 20px; border-bottom:1px solid #f0f0f0; display:flex; justify-content:space-between; align-items:center;">
+            <div style="font-size:16px; font-weight:700;">Flipkart Cart (<span id="cartCountTitle">0</span> Items)</div>
+            <button style="background:none; border:none; color:#d32f2f; cursor:pointer; font-size:13px; font-weight:600;" onclick="clearCart()">Empty Cart</button>
+          </div>
+          <div id="cartItemsContainer"></div>
+        </div>
+
+        <!-- Saved For Later Section -->
+        <div class="fk-cart-card" id="savedForLaterCard" style="display:none;">
+          <div style="padding:16px 20px; border-bottom:1px solid #f0f0f0; font-size:16px; font-weight:700;">
+            Saved For Later (<span id="savedCountTitle">0</span>)
+          </div>
+          <div id="savedItemsContainer"></div>
+        </div>
+      </div>
+
+      <!-- Price Details Sidebar -->
+      <div class="fk-price-sidebar">
+        <div class="fk-price-title">Price Details</div>
+        <div class="fk-price-row-item">
+          <span>Price (<span id="cartSummaryQty">0</span> items)</span>
+          <span id="cartOriginalSum">₹0</span>
+        </div>
+        <div class="fk-price-row-item" style="color:var(--fk-green);">
+          <span>Discount</span>
+          <span id="cartDiscountSum">-₹0</span>
+        </div>
+        <div class="fk-price-row-item" style="color:var(--fk-green);">
+          <span>Delivery Charges</span>
+          <span><span style="text-decoration:line-through; color:#878787; font-size:12px;">₹70</span> FREE</span>
+        </div>
+        <div class="fk-price-row-item" style="color:var(--fk-green);" id="couponRow" style="display:none;">
+          <span>Coupon Discount</span>
+          <span id="couponDiscountVal">-₹0</span>
+        </div>
+
+        <!-- Coupon input -->
+        <div class="fk-coupon-box">
+          <input type="text" id="couponCodeInput" placeholder="COUPON: FLIPKART500" value="FLIPKART500">
+          <button onclick="applyCoupon()">APPLY</button>
+        </div>
+
+        <div style="display:flex; justify-content:space-between; font-size:18px; font-weight:800; border-top:1px dashed #e0e0e0; padding-top:14px; margin-top:10px;">
+          <span>Total Amount</span>
+          <span id="cartFinalSum">₹0</span>
+        </div>
+
+        <div style="background:#e8f5e9; color:#2e7d32; padding:10px; border-radius:4px; font-size:13px; font-weight:700; text-align:center; margin:16px 0;">
+          🎉 You will save ₹<span id="cartSavingsSum">0</span> on this order
+        </div>
+
+        <button class="fk-buy-now-btn" style="width:100%; padding:14px; font-size:16px; border-radius:2px;" onclick="openView('checkout')">PLACE ORDER</button>
+
+        <div style="display:flex; align-items:center; gap:8px; margin-top:16px; font-size:12px; color:#878787; justify-content:center;">
+          <span>🔒 Safe and Secure Payments. 100% Authentic products.</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══════════════ VIEW: CHECKOUT & DELIVERY (MULTI-STEP ACCORDION) ══════════════ -->
+  <div class="fk-main fk-view" id="view-checkout">
+    <div class="fk-checkout-wrap">
+
+      <!-- Step 1: Login -->
+      <div class="fk-step-card">
+        <div class="fk-step-header active" id="chkStepHeader1" onclick="toggleCheckoutStep(1)">
+          <div class="fk-step-title"><span class="fk-step-num">1</span> LOGIN / ACCOUNT</div>
+          <span style="font-size:13px; font-weight:700;" id="chkLoginStatus">✓ Rahul Sharma (+91 9876543210)</span>
+        </div>
+        <div class="fk-step-body" id="chkStepBody1">
+          <p style="font-size:14px; margin-bottom:12px;">Logged in as: <b>Rahul Sharma</b> (rahul.sharma@flipkart.com)</p>
+          <button class="fk-buy-now-btn" style="padding:8px 20px;" onclick="toggleCheckoutStep(2)">CONTINUE TO DELIVERY ADDRESS</button>
+        </div>
+      </div>
+
+      <!-- Step 2: Delivery Address -->
+      <div class="fk-step-card">
+        <div class="fk-step-header active" id="chkStepHeader2" onclick="toggleCheckoutStep(2)">
+          <div class="fk-step-title"><span class="fk-step-num">2</span> DELIVERY ADDRESS</div>
+          <span style="font-size:13px; font-weight:700;" id="chkAddressSummary">Bangalore - 560001</span>
+        </div>
+        <div class="fk-step-body active" id="chkStepBody2">
+          <div class="fk-addr-grid">
+            <div class="fk-input-group">
+              <label>Full Name *</label>
+              <input type="text" id="shipName" value="Rahul Sharma">
+            </div>
+            <div class="fk-input-group">
+              <label>10-digit Mobile Number *</label>
+              <input type="tel" id="shipPhone" value="9876543210" maxlength="10">
+            </div>
+            <div class="fk-input-group">
+              <label>Pincode *</label>
+              <input type="text" id="shipPincode" value="560001" maxlength="6">
+            </div>
+            <div class="fk-input-group">
+              <label>Locality / Area *</label>
+              <input type="text" id="shipLocality" value="Indiranagar 100ft Road">
+            </div>
+            <div class="fk-input-group" style="grid-column:1/-1;">
+              <label>Address (House No, Building, Street) *</label>
+              <textarea id="shipStreet" rows="2">Flat 402, Royal Palms, 12th Main, Indiranagar</textarea>
+            </div>
+            <div class="fk-input-group">
+              <label>City / District *</label>
+              <input type="text" id="shipCity" value="Bengaluru">
+            </div>
+            <div class="fk-input-group">
+              <label>State *</label>
+              <select id="shipState">
+                <option value="Karnataka" selected>Karnataka</option>
+                <option value="Maharashtra">Maharashtra</option>
+                <option value="Delhi">Delhi</option>
+                <option value="Tamil Nadu">Tamil Nadu</option>
+                <option value="Telangana">Telangana</option>
+              </select>
+            </div>
+          </div>
+
+          <button class="fk-buy-now-btn" style="padding:12px 28px; font-size:14px; border-radius:2px;" onclick="saveAddressAndNext()">DELIVER HERE</button>
+        </div>
+      </div>
+
+      <!-- Step 3: Order Summary -->
+      <div class="fk-step-card">
+        <div class="fk-step-header" id="chkStepHeader3" onclick="toggleCheckoutStep(3)">
+          <div class="fk-step-title"><span class="fk-step-num">3</span> ORDER SUMMARY</div>
+          <span style="font-size:13px; font-weight:700;" id="chkItemsCountSummary">0 Items</span>
+        </div>
+        <div class="fk-step-body" id="chkStepBody3">
+          <div id="checkoutItemsList"></div>
+          <div style="display:flex; justify-content:space-between; align-items:center; margin-top:16px; border-top:1px solid #f0f0f0; padding-top:14px;">
+            <span style="font-size:13px; color:#555;">Order confirmation email will be sent to <b>rahul.sharma@flipkart.com</b></span>
+            <button class="fk-buy-now-btn" style="padding:10px 24px;" onclick="toggleCheckoutStep(4)">CONTINUE TO PAYMENT</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Step 4: Payment Options -->
+      <div class="fk-step-card">
+        <div class="fk-step-header" id="chkStepHeader4" onclick="toggleCheckoutStep(4)">
+          <div class="fk-step-title"><span class="fk-step-num">4</span> PAYMENT OPTIONS</div>
+        </div>
+        <div class="fk-step-body" id="chkStepBody4">
+          <div class="fk-pay-option selected" onclick="selectPayment(this, 'UPI')">
+            <input type="radio" name="payMethod" checked>
+            <div>
+              <div style="font-weight:700; font-size:14px;">UPI (Google Pay, PhonePe, Paytm, BHIM)</div>
+              <div style="font-size:12px; color:var(--fk-green); font-weight:600;">Instant payment & 5% extra Flipkart cashback</div>
+            </div>
+          </div>
+
+          <div class="fk-pay-option" onclick="selectPayment(this, 'Card')">
+            <input type="radio" name="payMethod">
+            <div>
+              <div style="font-weight:700; font-size:14px;">Credit / Debit / ATM Card</div>
+              <div style="font-size:12px; color:#666;">Visa, MasterCard, Rupay, American Express</div>
+            </div>
+          </div>
+
+          <div class="fk-pay-option" onclick="selectPayment(this, 'NetBanking')">
+            <input type="radio" name="payMethod">
+            <div>
+              <div style="font-weight:700; font-size:14px;">Net Banking</div>
+              <div style="font-size:12px; color:#666;">HDFC, SBI, ICICI, Axis & 50+ other banks</div>
+            </div>
+          </div>
+
+          <div class="fk-pay-option" onclick="selectPayment(this, 'COD')">
+            <input type="radio" name="payMethod">
+            <div>
+              <div style="font-weight:700; font-size:14px;">Cash on Delivery (COD)</div>
+              <div style="font-size:12px; color:#666;">Pay via cash or UPI scanner upon delivery</div>
+            </div>
+          </div>
+
+          <div style="background:#f8fafc; border:1px solid #e0e0e0; padding:16px; border-radius:4px; margin-top:18px;">
+            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:12px;">
+              <span style="font-size:15px; font-weight:700;">Amount Payable:</span>
+              <span style="font-size:20px; font-weight:800; color:var(--fk-text);" id="chkPayableAmount">₹0</span>
+            </div>
+            <button class="fk-buy-now-btn" style="width:100%; padding:14px; font-size:16px; border-radius:2px;" onclick="confirmAndPay()">CONFIRM & PAY</button>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ══════════════ VIEW: ORDERS & TRACKING ══════════════ -->
+  <div class="fk-main fk-view" id="view-orders">
+    <div style="max-width:1100px; margin:0 auto;">
+      <div style="background:#fff; border-radius:4px; box-shadow:var(--fk-card-shadow); padding:16px 20px; margin-bottom:16px; display:flex; justify-content:space-between; align-items:center;">
+        <div style="font-size:18px; font-weight:700;">My Orders (<span id="totalOrdersCount">0</span>)</div>
+        <div style="display:flex; gap:10px;">
+          <input type="text" id="orderSearchInput" placeholder="Search orders..." style="padding:6px 12px; border:1px solid #ccc; border-radius:3px; font-size:13px;" oninput="filterOrders(this.value)">
+        </div>
+      </div>
+
+      <div id="ordersContainer"></div>
+    </div>
+  </div>
+
+  <!-- ══════════════ VIEW: SERVICES ══════════════ -->
+  <div class="fk-main fk-view" id="view-services">
+    <div style="background:#fff; border-radius:4px; box-shadow:var(--fk-card-shadow); padding:20px;">
+      <div style="display:flex; justify-content:space-between; align-items:center; border-bottom:1px solid #f0f0f0; padding-bottom:12px; margin-bottom:16px;">
+        <span style="font-size:18px; font-weight:700;">📊 Microservices Architecture Health Monitor</span>
+        <button class="fk-login-btn" onclick="checkServices()">🔄 Ping All Services</button>
+      </div>
+      <div style="display:grid; grid-template-columns:repeat(auto-fill, minmax(280px, 1fr)); gap:14px;" id="servicesGrid"></div>
+    </div>
+  </div>
+
+  <!-- ══════════════ VIEW: AUTH ══════════════ -->
+  <div class="fk-main fk-view" id="view-auth">
+    <div style="background:#fff; border-radius:4px; box-shadow:var(--fk-card-shadow); max-width:440px; margin:40px auto; padding:24px;">
+      <div style="font-size:18px; font-weight:700; border-bottom:1px solid #f0f0f0; padding-bottom:12px; margin-bottom:16px;">👤 Flipkart Account Login</div>
+      <div style="display:flex; flex-direction:column; gap:14px;">
+        <input type="email" id="authEmail" placeholder="Enter Email / Mobile" value="rahul.sharma@flipkart.com" style="padding:12px; border:1px solid #ccc; border-radius:4px; font-size:14px;">
+        <input type="password" id="authPass" placeholder="Enter Password" value="flipkart123" style="padding:12px; border:1px solid #ccc; border-radius:4px; font-size:14px;">
+        <button class="fk-buy-now-btn" style="padding:12px; font-size:15px;" onclick="demoLogin()">LOGIN</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══════════════ PRODUCT DETAIL MODAL ══════════════ -->
+  <div class="fk-modal" id="productModal" onclick="if(event.target===this)closeModal()">
+    <div class="fk-modal-inner">
+      <button class="fk-modal-x" onclick="closeModal()">×</button>
+      <div class="fk-modal-img-wrap">
+        <img id="modalImg" src="" alt="Product">
+        <div style="display:grid; grid-template-columns:1fr 1fr; gap:10px; width:100%;">
+          <button class="fk-add-cart-btn" style="padding:12px; font-size:14px;" id="modalAddCart">🛒 ADD TO CART</button>
+          <button class="fk-buy-now-btn" style="padding:12px; font-size:14px;" id="modalBuyNow">⚡ BUY NOW</button>
+        </div>
+      </div>
+
+      <div class="fk-modal-details">
+        <div id="modalBrand" style="font-size:12px; font-weight:700; color:var(--fk-sub); text-transform:uppercase;"></div>
+        <h2 id="modalTitle" style="font-size:20px; font-weight:700; margin:6px 0 10px;"></h2>
+
+        <div style="display:flex; align-items:center; gap:10px; margin-bottom:12px;">
+          <span class="fk-star-chip" id="modalRating">4.8 ★</span>
+          <span style="font-size:13px; color:var(--fk-sub);" id="modalReviews">24,850 Ratings</span>
+          <span style="color:var(--fk-blue); font-weight:700; font-size:12px; margin-left:auto;">✦ Flipkart Assured</span>
+        </div>
+
+        <div style="display:flex; align-items:baseline; gap:10px; margin-bottom:12px;">
+          <span style="font-size:26px; font-weight:800;" id="modalPrice">₹0</span>
+          <span style="font-size:15px; color:var(--fk-sub); text-decoration:line-through;" id="modalOriginal">₹0</span>
+          <span style="font-size:15px; font-weight:700; color:var(--fk-green);" id="modalDiscount">0% off</span>
+        </div>
+
+        <!-- Pincode Checker -->
+        <div style="font-size:13px; font-weight:700; color:#555;">Delivery & Services:</div>
+        <div class="fk-pincode-box">
+          <input type="text" id="pincodeInput" placeholder="Enter Delivery Pincode" maxlength="6" value="560001">
+          <button onclick="checkPincode()">Check</button>
+        </div>
+        <div id="pincodeMsg" style="font-size:12px; color:#2e7d32; font-weight:600; margin-bottom:14px;">🚚 Delivery by Tomorrow, 5 PM | Free ₹40</div>
+
+        <!-- Bank Offers -->
+        <div style="font-size:13px; font-weight:700; margin-bottom:6px;">Available Offers:</div>
+        <div class="fk-offer-card">🏷️ <b>Bank Offer:</b> 10% Instant Discount up to ₹1,500 on HDFC Bank Credit Cards</div>
+        <div class="fk-offer-card">🏷️ <b>Special Price:</b> Extra ₹3,000 off during Big Billion Days Sale</div>
+        <div class="fk-offer-card">🏷️ <b>No Cost EMI:</b> Standard No Cost EMI available on major credit cards</div>
+
+        <!-- Specifications -->
+        <div style="font-size:14px; font-weight:700; margin:16px 0 8px;">Specifications & Highlights:</div>
+        <div id="modalSpecsContainer"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Toast -->
+  <div class="fk-toast" id="toastBox">Item added to cart!</div>
+
+  <!-- ══════════════ SCRIPT ══════════════ -->
+  <script>
+    // ── FALLBACK SVG GENERATOR ──
+    function createFallbackSvg(brand, name, category) {
+      const colors = {
+        'Mobiles': ['#1e3c72', '#2a5298'],
+        'Electronics': ['#134e5e', '#71b280'],
+        'Fashion': ['#ff512f', '#dd2476'],
+        'Appliances': ['#4568dc', '#b06ab3'],
+        'Beauty': ['#fc466b', '#3f5efb'],
+        'Books': ['#3a6073', '#3a7bd5']
+      };
+      const [c1, c2] = colors[category] || ['#2c3e50', '#3498db'];
+      const icon = category === 'Mobiles' ? '📱' : category === 'Electronics' ? '💻' : category === 'Fashion' ? '👟' : category === 'Beauty' ? '💄' : category === 'Appliances' ? '🏠' : '📚';
+      const cleanName = (name || '').replace(/[^a-zA-Z0-9 ]/g, '').slice(0, 20);
+
+      const svg = `<svg xmlns="http://www.w3.org/2000/svg" width="300" height="240" viewBox="0 0 300 240">
+        <defs>
+          <linearGradient id="g" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" stop-color="${c1}"/>
+            <stop offset="100%" stop-color="${c2}"/>
+          </linearGradient>
+        </defs>
+        <rect width="300" height="240" rx="8" fill="url(#g)"/>
+        <text x="150" y="110" font-size="54" text-anchor="middle" dominant-baseline="middle">${icon}</text>
+        <text x="150" y="170" font-family="sans-serif" font-size="14" font-weight="bold" fill="#ffffff" text-anchor="middle">${cleanName}</text>
+        <text x="150" y="195" font-family="sans-serif" font-size="12" fill="#ffe500" text-anchor="middle">✦ Flipkart Verified</text>
+      </svg>`;
+      return 'data:image/svg+xml;utf8,' + encodeURIComponent(svg);
+    }
+
+    function handleImgError(imgEl, brand, name, category) {
+      imgEl.onerror = null;
+      imgEl.src = createFallbackSvg(brand, name, category);
+    }
+
+    // ── STATE ──
+    let localProducts = [];
+    let externalProducts = [];
+    let currentCategory = 'all';
+    let cart = JSON.parse(localStorage.getItem('fk_cart') || '[]');
+    let savedForLater = JSON.parse(localStorage.getItem('fk_saved') || '[]');
+    let orders = JSON.parse(localStorage.getItem('fk_orders') || '[]');
+    let appliedCouponDiscount = 0;
+    let selectedPayMode = 'UPI';
+    let searchTimeout = null;
+
+    // ── INITIAL DEFAULT ORDERS FOR RICH USER EXPERIENCE ──
+    if(orders.length === 0) {
+      orders = [
+        {
+          id: 'FK-ODR-849201',
+          date: 'Yesterday, 04:30 PM',
+          deliveryExpected: 'Tomorrow, by 8 PM',
+          carrier: 'Ekart Logistics (FMPC2849102)',
+          currentStep: 3, // Out for Delivery
+          status: 'Out for Delivery',
+          paymentMode: 'Paid Online via UPI (PhonePe)',
+          address: 'Rahul Sharma, Flat 402, Royal Palms, Indiranagar, Bengaluru - 560001',
+          items: [
+            {
+              id: 1,
+              name: 'Samsung Galaxy S24 Ultra 5G (Titanium Gray, 256 GB, 12 GB RAM)',
+              brand: 'Samsung',
+              price: 134999,
+              discountedPrice: 99999,
+              qty: 1,
+              imageUrl: 'https://images.unsplash.com/photo-1610945265064-0e34e5519bbf?w=600&auto=format&fit=crop&q=80'
+            }
+          ],
+          totalAmount: 99999
+        },
+        {
+          id: 'FK-ODR-712849',
+          date: '21 Sep 2026',
+          deliveryExpected: 'Delivered on 23 Sep',
+          carrier: 'Ekart Express',
+          currentStep: 4, // Delivered
+          status: 'Delivered',
+          paymentMode: 'Cash on Delivery',
+          address: 'Rahul Sharma, Indiranagar, Bengaluru - 560001',
+          items: [
+            {
+              id: 16,
+              name: 'boAt Airdopes 141 Truly Wireless Earbuds (42H Playtime)',
+              brand: 'boAt',
+              price: 4490,
+              discountedPrice: 1199,
+              qty: 2,
+              imageUrl: 'https://images.unsplash.com/photo-1590658268037-6bf12165a8df?w=600&auto=format&fit=crop&q=80'
+            }
+          ],
+          totalAmount: 2398
+        }
+      ];
+      localStorage.setItem('fk_orders', JSON.stringify(orders));
+    }
+
+    // ── COUNTDOWN ──
+    function startTimer() {
+      let seconds = 4 * 3600 + 18 * 60 + 42;
+      setInterval(() => {
+        seconds--;
+        if(seconds <= 0) seconds = 86400;
+        const h = String(Math.floor(seconds/3600)).padStart(2,'0');
+        const m = String(Math.floor((seconds%3600)/60)).padStart(2,'0');
+        const s = String(seconds%60).padStart(2,'0');
+        const el = document.getElementById('clockDisplay');
+        if(el) el.textContent = `${h}h : ${m}m : ${s}s remaining`;
+      }, 1000);
+    }
+
+    // ── CATEGORY NORMALIZER ──
+    function normalizeCategory(cat) {
+      const c = (cat || '').toLowerCase();
+      if(c.includes('smartphones') || c.includes('mobile')) return 'Mobiles';
+      if(c.includes('laptop') || c.includes('tablet') || c.includes('electronics') || c.includes('camera') || c.includes('audio') || c.includes('headphone') || c.includes('gadget') || c.includes('watch') || c.includes('lighting')) return 'Electronics';
+      if(c.includes('shirt') || c.includes('shoe') || c.includes('dress') || c.includes('top') || c.includes('bag') || c.includes('jewel') || c.includes('sunglasses') || c.includes('fashion')) return 'Fashion';
+      if(c.includes('beauty') || c.includes('fragrance') || c.includes('skin') || c.includes('perfume')) return 'Beauty';
+      if(c.includes('appliance') || c.includes('furniture') || c.includes('kitchen') || c.includes('home') || c.includes('grocer')) return 'Appliances';
+      return 'Books';
+    }
+
+    // ── INITIALIZE CATALOG ──
+    async function initCatalog() {
+      try {
+        const res = await fetch('http://localhost:8082/api/products');
+        if(res.ok) {
+          const data = await res.json();
+          localProducts = Array.isArray(data) ? data : (data.content || []);
+        }
+      } catch (err) {
+        console.warn('Local product service not available, continuing...', err);
+      }
+
+      try {
+        const extRes = await fetch('https://dummyjson.com/products?limit=100');
+        if(extRes.ok) {
+          const extData = await extRes.json();
+          externalProducts = (extData.products || []).map(p => ({
+            id: 10000 + p.id,
+            name: p.title,
+            brand: p.brand || 'Flipkart Choice',
+            category: normalizeCategory(p.category),
+            subCategory: p.category,
+            price: Math.round(p.price * 83 * 1.3),
+            discountedPrice: Math.round(p.price * 83),
+            imageUrl: p.thumbnail || (p.images && p.images[0]) || createFallbackSvg(p.brand, p.title, 'Electronics'),
+            description: `• ${p.description}\n• Official Genuine Brand Warranty Included\n• 7 Days Replacement Policy & Free Express Delivery\n• In Box: Brand Packaging, User Guide & Standard Accessories`,
+            rating: p.rating || 4.5,
+            reviewCount: Math.floor(1000 + (p.id * 147))
+          }));
+        }
+      } catch (e) {
+        console.warn('External catalog fetch error', e);
+      }
+
+      renderProducts();
+      updateCartBadge();
+    }
+
+    function getCombinedProducts() {
+      return [...localProducts, ...externalProducts];
+    }
+
+    // ── ON-DEMAND SMART GENERATOR ──
+    function generateSmartProduct(keyword, index) {
+      const clean = keyword.charAt(0).toUpperCase() + keyword.slice(1);
+      const brands = ['Samsung', 'Apple', 'Sony', 'Nike', 'LG', 'Philips', 'boAt', 'Puma', 'Titan', 'Lenovo', 'HP', 'Dell', 'Asus', 'OnePlus', 'Biba', 'Prestige'];
+      const brand = brands[Math.floor(Math.random() * brands.length)];
+      const prices = [1299, 2499, 4999, 9999, 14999, 29999, 49999];
+      const orig = prices[index % prices.length];
+      const disc = Math.round(orig * 0.72);
+      const cat = normalizeCategory(keyword);
+
+      return {
+        id: 90000 + Math.floor(Math.random() * 9000),
+        name: `${brand} ${clean} Edition (New 2024 Model, Premium Quality)`,
+        brand: brand,
+        category: cat,
+        subCategory: keyword,
+        price: orig,
+        discountedPrice: disc,
+        imageUrl: `https://images.unsplash.com/photo-1523275335684-37898b6baf30?w=600&auto=format&fit=crop&q=80`,
+        description: `• High Performance ${clean} with Advanced Technology\n• Ergonomic design with durable build quality\n• 1 Year Comprehensive Brand Warranty\n• 7 Days Replacement Guarantee\n• Free Express Shipping Included`,
+        rating: 4.6 + (index * 0.1 > 0.3 ? 0.2 : 0.1),
+        reviewCount: 8400 + (index * 1230)
+      };
+    }
+
+    // ── LIVE SEARCH ──
+    function debounceSearch() {
+      clearTimeout(searchTimeout);
+      searchTimeout = setTimeout(triggerSearch, 300);
+    }
+
+    async function triggerSearch() {
+      openView('home');
+      const q = (document.getElementById('searchInput')?.value || '').trim();
+      const notice = document.getElementById('searchNotice');
+
+      if(!q) {
+        if(notice) notice.style.display = 'none';
+        renderProducts();
+        return;
+      }
+
+      if(notice) {
+        notice.style.display = 'block';
+        notice.textContent = `🔍 Searching live catalog for "${q}"...`;
+      }
+
+      try {
+        const liveRes = await fetch(`https://dummyjson.com/products/search?q=${encodeURIComponent(q)}`);
+        if(liveRes.ok) {
+          const liveData = await liveRes.json();
+          if(liveData.products && liveData.products.length > 0) {
+            const liveItems = liveData.products.map(p => ({
+              id: 20000 + p.id,
+              name: p.title,
+              brand: p.brand || 'Flipkart Choice',
+              category: normalizeCategory(p.category),
+              subCategory: p.category,
+              price: Math.round(p.price * 83 * 1.3),
+              discountedPrice: Math.round(p.price * 83),
+              imageUrl: p.thumbnail || (p.images && p.images[0]) || createFallbackSvg(p.brand, p.title, 'Electronics'),
+              description: `• ${p.description}\n• Official Genuine Warranty\n• 7 Days Replacement Guarantee`,
+              rating: p.rating || 4.6,
+              reviewCount: Math.floor(2000 + (p.id * 180))
+            }));
+
+            const existingNames = new Set(externalProducts.map(x => x.name.toLowerCase()));
+            liveItems.forEach(item => {
+              if(!existingNames.has(item.name.toLowerCase())) {
+                externalProducts.unshift(item);
+              }
+            });
+          }
+        }
+      } catch (err) {
+        console.warn('Live search error', err);
+      }
+
+      renderProducts();
+    }
+
+    // ── RENDER PRODUCTS GRID ──
+    function renderProducts() {
+      const grid = document.getElementById('productGrid');
+      if(!grid) return;
+
+      let list = getCombinedProducts();
+
+      if(currentCategory !== 'all') {
+        list = list.filter(p => (p.category || '').toLowerCase() === currentCategory.toLowerCase());
+      }
+
+      const q = (document.getElementById('searchInput')?.value || '').trim().toLowerCase();
+      if(q) {
+        list = list.filter(p =>
+          (p.name || '').toLowerCase().includes(q) ||
+          (p.brand || '').toLowerCase().includes(q) ||
+          (p.category || '').toLowerCase().includes(q) ||
+          (p.subCategory || '').toLowerCase().includes(q) ||
+          (p.description || '').toLowerCase().includes(q)
+        );
+
+        if(list.length < 4) {
+          for(let i = 0; i < 4; i++) {
+            list.push(generateSmartProduct(q, i));
+          }
+        }
+      }
+
+      const sortVal = document.getElementById('sortSelect')?.value || 'relevance';
+      if(sortVal === 'price-asc') {
+        list.sort((a,b) => (a.discountedPrice || a.price) - (b.discountedPrice || b.price));
+      } else if(sortVal === 'price-desc') {
+        list.sort((a,b) => (b.discountedPrice || b.price) - (a.discountedPrice || a.price));
+      } else if(sortVal === 'rating') {
+        list.sort((a,b) => (b.rating || 4.5) - (a.rating || 4.5));
+      }
+
+      document.getElementById('totalItemsBadge').textContent = list.length;
+      const notice = document.getElementById('searchNotice');
+      if(notice && q) {
+        notice.style.display = 'block';
+        notice.innerHTML = `Showing <b>${list.length}</b> verified results for <b>"${q}"</b>:`;
+      }
+
+      grid.innerHTML = list.map(item => {
+        const disc = item.discountedPrice ? Math.round((1 - item.discountedPrice / item.price) * 100) : 0;
+        const rating = (item.rating && item.rating > 0) ? item.rating.toFixed(1) : '4.6';
+        const reviews = (item.reviewCount && item.reviewCount > 0) ? item.reviewCount.toLocaleString() : '12,500';
+
+        return `
+          <div class="fk-card" onclick="openDetails(${item.id})">
+            ${disc > 0 ? `<div class="fk-discount-tag">${disc}% OFF</div>` : ''}
+            <div class="fk-card-heart" onclick="event.stopPropagation(); toggleHeart(this)">♡</div>
+
+            <div class="fk-img-box">
+              <img src="${item.imageUrl}" alt="${item.name}" loading="lazy" referrerpolicy="no-referrer" onerror="handleImgError(this, '${item.brand||''}', '${item.name||''}', '${item.category||''}')">
+            </div>
+
+            <div class="fk-brand-lbl">${item.brand || 'Flipkart'}</div>
+            <div class="fk-title-lbl" title="${item.name}">${item.name}</div>
+
+            <div class="fk-rating-row">
+              <span class="fk-star-chip">${rating} ★</span>
+              <span class="fk-reviews-lbl">(${reviews})</span>
+              <span class="fk-assured-badge">✦ Assured</span>
+            </div>
+
+            <div class="fk-price-box">
+              <div class="fk-price-row">
+                <span class="fk-now-price">₹${(item.discountedPrice || item.price).toLocaleString('en-IN')}</span>
+                ${disc > 0 ? `<span class="fk-old-price">₹${item.price.toLocaleString('en-IN')}</span>` : ''}
+                ${disc > 0 ? `<span class="fk-disc-text">${disc}% off</span>` : ''}
+              </div>
+              <div class="fk-free-del">Free Delivery • Best Price Guaranteed</div>
+              <div class="fk-card-btns" onclick="event.stopPropagation()">
+                <button class="fk-add-cart-btn" onclick="addToCart(${item.id})">ADD TO CART</button>
+                <button class="fk-buy-now-btn" onclick="buyNow(${item.id})">BUY NOW</button>
+              </div>
+            </div>
+          </div>
+        `;
+      }).join('');
+    }
+
+    function toggleHeart(el) {
+      el.classList.toggle('active');
+      if(el.classList.contains('active')) {
+        el.textContent = '❤️';
+        showToast('Saved to your Wishlist!');
+      } else {
+        el.textContent = '♡';
+      }
+    }
+
+    function setCategory(cat) {
+      currentCategory = cat;
+      document.querySelectorAll('.fk-cat-pill').forEach(el => el.classList.remove('active'));
+      document.querySelectorAll('.fk-chip').forEach(el => el.classList.remove('active'));
+
+      const chip = Array.from(document.querySelectorAll('.fk-chip')).find(el => el.textContent.includes(cat) || (cat==='all' && el.textContent.includes('All')));
+      if(chip) chip.classList.add('active');
+
+      renderProducts();
+    }
+
+    // ── DETAILS MODAL ──
+    function openDetails(id) {
+      const item = getCombinedProducts().find(p => p.id === id);
+      if(!item) return;
+
+      const img = document.getElementById('modalImg');
+      img.src = item.imageUrl;
+      img.onerror = () => handleImgError(img, item.brand, item.name, item.category);
+
+      document.getElementById('modalBrand').textContent = item.brand || 'Flipkart';
+      document.getElementById('modalTitle').textContent = item.name;
+
+      const rating = (item.rating && item.rating > 0) ? item.rating.toFixed(1) : '4.7';
+      const reviews = (item.reviewCount && item.reviewCount > 0) ? item.reviewCount.toLocaleString() : '18,400';
+      document.getElementById('modalRating').textContent = rating + ' ★';
+      document.getElementById('modalReviews').textContent = reviews + ' Ratings & Reviews';
+
+      document.getElementById('modalPrice').textContent = '₹' + (item.discountedPrice || item.price).toLocaleString('en-IN');
+      document.getElementById('modalOriginal').textContent = '₹' + item.price.toLocaleString('en-IN');
+
+      const disc = item.discountedPrice ? Math.round((1 - item.discountedPrice / item.price) * 100) : 0;
+      document.getElementById('modalDiscount').textContent = disc + '% off';
+
+      const specsContainer = document.getElementById('modalSpecsContainer');
+      const lines = (item.description || '').split('\n').filter(l => l.trim().length > 0);
+      specsContainer.innerHTML = lines.map(line => `
+        <div class="fk-spec-item">
+          <span style="color:var(--fk-blue); font-weight:bold;">✔</span>
+          <span>${line.replace(/^[•\-\*]\s*/, '')}</span>
+        </div>
+      `).join('');
+
+      document.getElementById('modalAddCart').onclick = () => { addToCart(item.id); closeModal(); };
+      document.getElementById('modalBuyNow').onclick = () => { buyNow(item.id); closeModal(); };
+
+      document.getElementById('productModal').classList.add('open');
+    }
+
+    function closeModal() {
+      document.getElementById('productModal').classList.remove('open');
+    }
+
+    function checkPincode() {
+      const val = document.getElementById('pincodeInput').value;
+      if(val.length === 6) {
+        document.getElementById('pincodeMsg').innerHTML = `🚚 Delivery to <b>${val}</b> by Tomorrow, 5 PM | Free ₹40`;
+      } else {
+        document.getElementById('pincodeMsg').innerHTML = `<span style="color:#d32f2f">Please enter a valid 6-digit Pincode</span>`;
+      }
+    }
+
+    // ── CART MANAGEMENT ──
+    function addToCart(id) {
+      const item = getCombinedProducts().find(p => p.id === id);
+      if(!item) return;
+
+      const existing = cart.find(c => c.id === id);
+      if(existing) {
+        existing.qty++;
+      } else {
+        cart.push({ ...item, qty: 1 });
+      }
+      localStorage.setItem('fk_cart', JSON.stringify(cart));
+      updateCartBadge();
+      showToast(`🛒 "${item.name.slice(0, 25)}..." added to Cart!`);
+    }
+
+    function buyNow(id) {
+      addToCart(id);
+      openView('cart');
+    }
+
+    function updateCartBadge() {
+      const total = cart.reduce((sum, item) => sum + item.qty, 0);
+      document.getElementById('cartCountBadge').textContent = total;
+    }
+
+    function renderCart() {
+      const container = document.getElementById('cartItemsContainer');
+      if(!container) return;
+
+      const count = cart.reduce((sum, item) => sum + item.qty, 0);
+      document.getElementById('cartCountTitle').textContent = count;
+      document.getElementById('cartSummaryQty').textContent = count;
+
+      if(!cart.length) {
+        container.innerHTML = `
+          <div style="text-align:center; padding:60px 20px;">
+            <div style="font-size:70px;">🛒</div>
+            <h3 style="margin:14px 0 6px;">Missing Cart items?</h3>
+            <p style="color:#878787; margin-bottom:24px;">Explore our 200+ bestselling products and deals.</p>
+            <button class="fk-buy-now-btn" style="padding:12px 32px; font-size:15px;" onclick="openView('home')">Shop Today's Deals</button>
+          </div>
+        `;
+        document.getElementById('cartOriginalSum').textContent = '₹0';
+        document.getElementById('cartDiscountSum').textContent = '-₹0';
+        document.getElementById('cartFinalSum').textContent = '₹0';
+        document.getElementById('cartSavingsSum').textContent = '0';
+        renderSavedForLater();
+        return;
+      }
+
+      let originalTotal = 0;
+      let finalTotal = 0;
+
+      container.innerHTML = cart.map(item => {
+        const itemOrig = item.price * item.qty;
+        const itemFin = (item.discountedPrice || item.price) * item.qty;
+        originalTotal += itemOrig;
+        finalTotal += itemFin;
+        const disc = Math.round((1 - (item.discountedPrice || item.price) / item.price) * 100);
+
+        return `
+          <div class="fk-cart-item-row">
+            <img class="fk-cart-item-img" src="${item.imageUrl}" alt="${item.name}" onerror="handleImgError(this, '${item.brand||''}', '${item.name||''}', '${item.category||''}')">
+            <div class="fk-cart-item-details">
+              <div class="fk-cart-item-title">${item.name}</div>
+              <div class="fk-cart-seller">Seller: RetailNet <span style="color:var(--fk-blue); font-weight:700;">✦ Assured</span></div>
+              <div style="display:flex; align-items:baseline; gap:10px; margin-bottom:4px;">
+                <span style="font-size:18px; font-weight:800;">₹${itemFin.toLocaleString('en-IN')}</span>
+                <span style="font-size:14px; color:var(--fk-sub); text-decoration:line-through;">₹${itemOrig.toLocaleString('en-IN')}</span>
+                <span style="font-size:13px; font-weight:700; color:var(--fk-green);">${disc}% Off</span>
+              </div>
+              <div class="fk-cart-delivery-date">🚚 Delivery by <b>Tomorrow, 9 PM</b> | <span style="color:var(--fk-green)">FREE</span></div>
+
+              <div class="fk-cart-qty-wrap">
+                <button class="fk-qty-btn" onclick="changeQty(${item.id}, -1)">−</button>
+                <span style="font-weight:700; min-width:24px; text-align:center;">${item.qty}</span>
+                <button class="fk-qty-btn" onclick="changeQty(${item.id}, 1)">+</button>
+                <button class="fk-cart-action-btn" style="margin-left:14px;" onclick="saveForLater(${item.id})">SAVE FOR LATER</button>
+                <button class="fk-cart-action-btn remove" onclick="removeItem(${item.id})">REMOVE</button>
+              </div>
+            </div>
+          </div>
+        `;
+      }).join('');
+
+      let finalPayable = finalTotal - appliedCouponDiscount;
+      if(finalPayable < 0) finalPayable = 0;
+      const totalSavings = (originalTotal - finalTotal) + appliedCouponDiscount;
+
+      document.getElementById('cartOriginalSum').textContent = '₹' + originalTotal.toLocaleString('en-IN');
+      document.getElementById('cartDiscountSum').textContent = '-₹' + (originalTotal - finalTotal).toLocaleString('en-IN');
+      document.getElementById('cartFinalSum').textContent = '₹' + finalPayable.toLocaleString('en-IN');
+      document.getElementById('cartSavingsSum').textContent = totalSavings.toLocaleString('en-IN');
+
+      renderSavedForLater();
+    }
+
+    function changeQty(id, delta) {
+      const item = cart.find(c => c.id === id);
+      if(!item) return;
+      item.qty += delta;
+      if(item.qty <= 0) {
+        removeItem(id);
+        return;
+      }
+      localStorage.setItem('fk_cart', JSON.stringify(cart));
+      updateCartBadge();
+      renderCart();
+    }
+
+    function removeItem(id) {
+      cart = cart.filter(c => c.id !== id);
+      localStorage.setItem('fk_cart', JSON.stringify(cart));
+      updateCartBadge();
+      renderCart();
+      showToast('Item removed from cart');
+    }
+
+    function clearCart() {
+      cart = [];
+      localStorage.setItem('fk_cart', JSON.stringify(cart));
+      updateCartBadge();
+      renderCart();
+      showToast('Cart cleared');
+    }
+
+    // ── SAVE FOR LATER ──
+    function saveForLater(id) {
+      const item = cart.find(c => c.id === id);
+      if(!item) return;
+      cart = cart.filter(c => c.id !== id);
+      savedForLater.push(item);
+      localStorage.setItem('fk_cart', JSON.stringify(cart));
+      localStorage.setItem('fk_saved', JSON.stringify(savedForLater));
+      updateCartBadge();
+      renderCart();
+      showToast(`Saved "${item.name.slice(0, 20)}..." for later!`);
+    }
+
+    function moveToCart(id) {
+      const item = savedForLater.find(s => s.id === id);
+      if(!item) return;
+      savedForLater = savedForLater.filter(s => s.id !== id);
+      cart.push({ ...item, qty: 1 });
+      localStorage.setItem('fk_cart', JSON.stringify(cart));
+      localStorage.setItem('fk_saved', JSON.stringify(savedForLater));
+      updateCartBadge();
+      renderCart();
+      showToast(`Moved "${item.name.slice(0, 20)}..." back to Cart!`);
+    }
+
+    function renderSavedForLater() {
+      const wrap = document.getElementById('savedForLaterCard');
+      const container = document.getElementById('savedItemsContainer');
+      if(!savedForLater.length) {
+        wrap.style.display = 'none';
+        return;
+      }
+      wrap.style.display = 'block';
+      document.getElementById('savedCountTitle').textContent = savedForLater.length;
+
+      container.innerHTML = savedForLater.map(item => `
+        <div class="fk-cart-item-row">
+          <img class="fk-cart-item-img" src="${item.imageUrl}" alt="${item.name}" onerror="handleImgError(this, '${item.brand||''}', '${item.name||''}', '${item.category||''}')">
+          <div class="fk-cart-item-details">
+            <div class="fk-cart-item-title">${item.name}</div>
+            <div style="font-size:16px; font-weight:800; margin:6px 0;">₹${(item.discountedPrice || item.price).toLocaleString('en-IN')}</div>
+            <div style="display:flex; gap:16px; margin-top:8px;">
+              <button class="fk-cart-action-btn" style="color:var(--fk-blue);" onclick="moveToCart(${item.id})">MOVE TO CART</button>
+              <button class="fk-cart-action-btn remove" onclick="savedForLater=savedForLater.filter(x=>x.id!==${item.id}); localStorage.setItem('fk_saved', JSON.stringify(savedForLater)); renderSavedForLater();">REMOVE</button>
+            </div>
+          </div>
+        </div>
+      `).join('');
+    }
+
+    // ── COUPON CODE ──
+    function applyCoupon() {
+      const code = (document.getElementById('couponCodeInput')?.value || '').trim().toUpperCase();
+      if(code === 'FLIPKART500') {
+        appliedCouponDiscount = 500;
+        showToast('🎉 Coupon FLIPKART500 applied! Flat ₹500 Off');
+      } else if(code === 'BIGBILLION') {
+        appliedCouponDiscount = 1000;
+        showToast('🎉 Big Billion Coupon applied! Flat ₹1,000 Off');
+      } else {
+        appliedCouponDiscount = 0;
+        showToast('Invalid Coupon Code');
+      }
+      renderCart();
+    }
+
+    // ── CHECKOUT STEPPER ──
+    function toggleCheckoutStep(stepNum) {
+      for(let i=1; i<=4; i++) {
+        const body = document.getElementById(`chkStepBody${i}`);
+        const header = document.getElementById(`chkStepHeader${i}`);
+        if(i === stepNum) {
+          body.classList.add('active');
+          header.classList.add('active');
+        } else {
+          body.classList.remove('active');
+          if(i < stepNum) header.classList.remove('active');
+        }
+      }
+    }
+
+    function renderCheckoutSummary() {
+      const container = document.getElementById('checkoutItemsList');
+      if(!container) return;
+
+      let total = 0;
+      container.innerHTML = cart.map(item => {
+        const cost = (item.discountedPrice || item.price) * item.qty;
+        total += cost;
+        return `
+          <div style="display:flex; gap:16px; padding:12px 0; border-bottom:1px solid #f0f0f0; align-items:center;">
+            <img src="${item.imageUrl}" style="width:60px; height:60px; object-fit:contain;" onerror="handleImgError(this, '${item.brand||''}', '${item.name||''}', '${item.category||''}')">
+            <div style="flex:1;">
+              <div style="font-size:14px; font-weight:600;">${item.name}</div>
+              <div style="font-size:12px; color:var(--fk-sub);">Qty: ${item.qty} | Price: ₹${cost.toLocaleString('en-IN')}</div>
+            </div>
+            <span style="font-size:12px; color:var(--fk-green); font-weight:700;">Delivery by Tomorrow</span>
+          </div>
+        `;
+      }).join('');
+
+      let payable = total - appliedCouponDiscount;
+      if(payable < 0) payable = 0;
+      document.getElementById('chkPayableAmount').textContent = '₹' + payable.toLocaleString('en-IN');
+      document.getElementById('chkItemsCountSummary').textContent = `${cart.length} Items (₹${payable.toLocaleString('en-IN')})`;
+    }
+
+    function saveAddressAndNext() {
+      const name = document.getElementById('shipName').value;
+      const phone = document.getElementById('shipPhone').value;
+      const pin = document.getElementById('shipPincode').value;
+      const street = document.getElementById('shipStreet').value;
+      const city = document.getElementById('shipCity').value;
+
+      if(!name || !phone || !pin) {
+        showToast('Please fill required address fields!');
+        return;
+      }
+
+      document.getElementById('chkAddressSummary').textContent = `${name}, ${city} - ${pin}`;
+      document.getElementById('cartDelivName').textContent = `${name}, ${pin}`;
+      toggleCheckoutStep(3);
+      showToast('Delivery address confirmed!');
+    }
+
+    function selectPayment(el, mode) {
+      document.querySelectorAll('.fk-pay-option').forEach(p => p.classList.remove('selected'));
+      el.classList.add('selected');
+      el.querySelector('input').checked = true;
+      selectedPayMode = mode;
+    }
+
+    function confirmAndPay() {
+      if(!cart.length) {
+        showToast('Cart is empty!');
+        return;
+      }
+
+      const total = cart.reduce((sum, item) => sum + (item.discountedPrice || item.price) * item.qty, 0) - appliedCouponDiscount;
+      const name = document.getElementById('shipName').value || 'Rahul Sharma';
+      const city = document.getElementById('shipCity').value || 'Bengaluru';
+      const pin = document.getElementById('shipPincode').value || '560001';
+
+      const newOrder = {
+        id: 'FK-ODR-' + Math.floor(100000 + Math.random() * 900000),
+        date: 'Today, ' + new Date().toLocaleTimeString([], { hour:'2-digit', minute:'2-digit' }),
+        deliveryExpected: 'Tomorrow, by 8 PM',
+        carrier: 'Ekart Logistics Express',
+        currentStep: 1, // Order Confirmed
+        status: 'Confirmed',
+        paymentMode: selectedPayMode === 'COD' ? 'Cash on Delivery' : `Paid via ${selectedPayMode}`,
+        address: `${name}, ${city} - ${pin}`,
+        items: [...cart],
+        totalAmount: total < 0 ? 0 : total
+      };
+
+      orders.unshift(newOrder);
+      localStorage.setItem('fk_orders', JSON.stringify(orders));
+
+      // Clear cart
+      cart = [];
+      localStorage.setItem('fk_cart', JSON.stringify(cart));
+      updateCartBadge();
+
+      showToast('🎉 Order placed successfully! Tracking activated.');
+      openView('orders');
+    }
+
+    // ── ORDERS & TRACKING VIEW ──
+    function renderOrders(filterQuery = '') {
+      const container = document.getElementById('ordersContainer');
+      if(!container) return;
+
+      let list = [...orders];
+      if(filterQuery) {
+        list = list.filter(o =>
+          o.id.toLowerCase().includes(filterQuery.toLowerCase()) ||
+          o.items.some(i => i.name.toLowerCase().includes(filterQuery.toLowerCase()))
+        );
+      }
+
+      document.getElementById('totalOrdersCount').textContent = list.length;
+
+      if(!list.length) {
+        container.innerHTML = `
+          <div style="background:#fff; border-radius:4px; padding:60px 20px; text-align:center;">
+            <div style="font-size:64px;">📦</div>
+            <h3 style="margin:14px 0 6px;">No orders found</h3>
+            <p style="color:#878787; margin-bottom:20px;">Place your first order to experience real-time Ekart delivery tracking.</p>
+            <button class="fk-buy-now-btn" style="padding:10px 28px;" onclick="openView('home')">Start Shopping</button>
+          </div>
+        `;
+        return;
+      }
+
+      container.innerHTML = list.map(o => {
+        const stepClass = o.currentStep >= 4 ? 'step-4' : o.currentStep >= 2 ? 'step-2' : '';
+        return `
+          <div class="fk-order-card">
+            <div style="display:flex; justify-content:space-between; align-items:center; border-bottom:1px solid #f0f0f0; padding-bottom:12px; margin-bottom:14px;">
+              <div>
+                <span style="font-weight:700; font-size:15px;">Order #${o.id}</span>
+                <span style="font-size:12px; color:var(--fk-sub); margin-left:12px;">Placed on ${o.date}</span>
+              </div>
+              <div style="font-size:13px; font-weight:700; color:var(--fk-green); background:var(--fk-green-bg); padding:4px 12px; border-radius:20px;">
+                ● ${o.status}
+              </div>
+            </div>
+
+            <!-- Items -->
+            <div style="display:flex; flex-direction:column; gap:12px; margin-bottom:16px;">
+              ${o.items.map(it => `
+                <div style="display:flex; gap:14px; align-items:center;">
+                  <img src="${it.imageUrl}" style="width:64px; height:64px; object-fit:contain; border:1px solid #f0f0f0; border-radius:4px;" onerror="handleImgError(this, '${it.brand||''}', '${it.name||''}', '')">
+                  <div style="flex:1;">
+                    <div style="font-size:14px; font-weight:600;">${it.name}</div>
+                    <div style="font-size:12px; color:var(--fk-sub); margin-top:2px;">Qty: ${it.qty} × ₹${(it.discountedPrice || it.price).toLocaleString('en-IN')}</div>
+                  </div>
+                  <div style="text-align:right;">
+                    <div style="font-size:15px; font-weight:800;">₹${((it.discountedPrice || it.price) * it.qty).toLocaleString('en-IN')}</div>
+                    <div style="font-size:11px; color:var(--fk-green); font-weight:600;">Express Ekart Delivery</div>
+                  </div>
+                </div>
+              `).join('')}
+            </div>
+
+            <!-- EKART TRACKER STEPPER -->
+            <div style="background:#fafafa; border:1px solid #eee; border-radius:4px; padding:16px; margin-bottom:14px;">
+              <div style="font-size:12px; font-weight:700; color:var(--fk-sub); text-transform:uppercase; margin-bottom:8px;">Live Delivery Status (${o.carrier})</div>
+              <div class="fk-tracker-stepper ${stepClass}">
+                <div class="fk-track-point">
+                  <div class="fk-track-dot done">✓</div>
+                  <div class="fk-track-lbl">Ordered</div>
+                  <div class="fk-track-sub">${o.date.split(',')[0]}</div>
+                </div>
+                <div class="fk-track-point">
+                  <div class="fk-track-dot ${o.currentStep >= 2 ? 'done' : ''}">${o.currentStep >= 2 ? '✓' : '2'}</div>
+                  <div class="fk-track-lbl">Packed</div>
+                  <div class="fk-track-sub">Warehouse</div>
+                </div>
+                <div class="fk-track-point">
+                  <div class="fk-track-dot ${o.currentStep >= 3 ? 'done' : ''}">${o.currentStep >= 3 ? '✓' : '3'}</div>
+                  <div class="fk-track-lbl">Out for Delivery</div>
+                  <div class="fk-track-sub">Near Hub</div>
+                </div>
+                <div class="fk-track-point">
+                  <div class="fk-track-dot ${o.currentStep >= 4 ? 'done' : ''}">${o.currentStep >= 4 ? '✓' : '4'}</div>
+                  <div class="fk-track-lbl">Delivered</div>
+                  <div class="fk-track-sub">${o.deliveryExpected}</div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Order Footer -->
+            <div style="display:flex; justify-content:space-between; align-items:center; border-top:1px dashed #e0e0e0; padding-top:12px;">
+              <div>
+                <span style="font-size:12px; color:var(--fk-sub);">Delivery Address: </span>
+                <span style="font-size:12px; font-weight:600;">${o.address}</span>
+                <span style="margin-left:10px; font-size:12px; color:var(--fk-blue); font-weight:600;">• ${o.paymentMode}</span>
+              </div>
+              <div style="display:flex; gap:10px; align-items:center;">
+                <button style="border:1px solid #ccc; background:#fff; padding:6px 14px; font-size:12px; font-weight:700; border-radius:2px; cursor:pointer;" onclick="downloadInvoice('${o.id}')">📄 INVOICE</button>
+                <button style="background:var(--fk-blue); color:#fff; border:none; padding:7px 16px; font-size:12px; font-weight:700; border-radius:2px; cursor:pointer;" onclick="showToast('Ekart tracking refreshed! Package is on schedule.')">TRACK PACKAGE</button>
+              </div>
+            </div>
+          </div>
+        `;
+      }).join('');
+    }
+
+    function filterOrders(q) {
+      renderOrders(q);
+    }
+
+    function downloadInvoice(orderId) {
+      showToast(`Generating official GST Tax Invoice for Order ${orderId}...`);
+      setTimeout(() => {
+        window.print();
+      }, 500);
+    }
+
+    // ── SERVICES MONITOR ──
+    const SERVICES_DATA = [
+      { name: 'Product Service (Catalog & Images)', port: 8082, url: 'http://localhost:8082/api/products', desc: 'Serves all core Indian products with photos & specs' },
+      { name: 'User & Auth Service (JWT)', port: 8081, url: 'http://localhost:8081/api/users/health', desc: 'Authentication, profiles & security' },
+      { name: 'Eureka Service Discovery', port: 8761, url: 'http://localhost:8761', desc: 'Central registry for all microservices' },
+      { name: 'UI & Frontend Service (Web)', port: 9090, url: 'http://localhost:9090', desc: 'Flipkart web application portal' }
+    ];
+
+    async function checkServices() {
+      const container = document.getElementById('servicesGrid');
+      if(!container) return;
+
+      container.innerHTML = SERVICES_DATA.map(s => `
+        <div style="background:#f9fafb; border:1px solid #e5e7eb; border-radius:6px; padding:16px; display:flex; align-items:center; gap:14px;">
+          <div class="fk-dot down" id="dot-${s.port}" style="width:12px; height:12px; border-radius:50%; background:#d32f2f;"></div>
+          <div style="flex:1;">
+            <div style="font-weight:700; font-size:14px;">${s.name}</div>
+            <div style="font-size:12px; color:#878787;">Port: <b>${s.port}</b> • <a href="${s.url}" target="_blank" style="color:var(--fk-blue)">Visit ↗</a></div>
+            <div style="font-size:11px; color:#666; margin-top:2px;">${s.desc}</div>
+          </div>
+          <span style="font-size:12px; font-weight:700;" id="txt-${s.port}">Checking...</span>
+        </div>
+      `).join('');
+
+      for(const s of SERVICES_DATA) {
+        try {
+          await fetch(s.url, { mode: 'no-cors' });
+          const dot = document.getElementById(`dot-${s.port}`);
+          const txt = document.getElementById(`txt-${s.port}`);
+          if(dot) { dot.style.background = '#388e3c'; dot.style.boxShadow = '0 0 8px #388e3c'; }
+          if(txt) { txt.textContent = 'ONLINE ✅'; txt.style.color = '#388e3c'; }
+        } catch {
+          const dot = document.getElementById(`dot-${s.port}`);
+          const txt = document.getElementById(`txt-${s.port}`);
+          if(dot) { dot.style.background = '#d32f2f'; dot.style.boxShadow = '0 0 8px #d32f2f'; }
+          if(txt) { txt.textContent = 'OFFLINE ❌'; txt.style.color = '#d32f2f'; }
+        }
+      }
+    }
+
+    // ── NAVIGATION ──
+    function openView(viewName) {
+      document.querySelectorAll('.fk-view').forEach(v => v.classList.remove('active'));
+      const target = document.getElementById('view-' + viewName);
+      if(target) target.classList.add('active');
+
+      if(viewName === 'cart') renderCart();
+      if(viewName === 'checkout') {
+        renderCart();
+        renderCheckoutSummary();
+        toggleCheckoutStep(2);
+      }
+      if(viewName === 'orders') renderOrders();
+      if(viewName === 'services') checkServices();
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    function demoLogin() {
+      const email = document.getElementById('authEmail').value || 'rahul.sharma@flipkart.com';
+      document.getElementById('loginBtnLabel').textContent = email.split('@')[0];
+      showToast('🎉 Logged in as ' + email);
+      openView('home');
+    }
+
+    function showToast(msg) {
+      const t = document.getElementById('toastBox');
+      t.textContent = msg;
+      t.classList.add('show');
+      setTimeout(() => t.classList.remove('show'), 3000);
+    }
+
+    // ── INIT ──
+    window.addEventListener('DOMContentLoaded', () => {
+      startTimer();
+      updateCartBadge();
+      initCatalog();
+    });
+  </script>
+</body>
+</html>
