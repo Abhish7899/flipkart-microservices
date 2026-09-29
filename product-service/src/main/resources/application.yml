@@ -6,7 +6,6 @@ spring:
     name: PRODUCT-SERVICE
   datasource:
     url: jdbc:h2:mem:productdb;DB_CLOSE_DELAY=-1
-    driver-class-name: org.h2.Driver
     username: sa
     password: ""
   h2:
@@ -15,9 +14,8 @@ spring:
       path: /h2-console
   jpa:
     hibernate:
-      ddl-auto: create-drop
+      ddl-auto: update
     show-sql: false
-    database-platform: org.hibernate.dialect.H2Dialect
 
 eureka:
   client:
