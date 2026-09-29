@@ -1,0 +1,6 @@
+aws_region        = "us-east-2"
+environment       = "flipkart-dev"
+vpc_cidr          = "10.0.0.0/16"
+db_username       = "postgres"
+db_password       = "FlipkartDev2026Secure!"
+eks_instance_type = "t3.medium"
