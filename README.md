@@ -1,6 +1,14 @@
 # 🛒 Flipkart-Like E-Commerce Microservices
 
-A full-featured e-commerce backend application built with **Spring Boot Microservices** architecture.
+[![CI/CD Pipeline](https://github.com/Abhish7899/flipkart-microservices/actions/workflows/ci-cd.yml/badge.svg)](https://github.com/Abhish7899/flipkart-microservices/actions/workflows/ci-cd.yml)
+[![Kubernetes](https://img.shields.io/badge/Kubernetes-K3s%20on%20AWS-blue.svg)](https://k3s.io)
+[![Live Demo](https://img.shields.io/badge/Live%20Demo-AWS%20EC2-brightgreen.svg)](http://18.221.209.92/)
+
+### 🚀 Live Deployment Endpoints
+* **🌐 Web Application:** [http://18.221.209.92/](http://18.221.209.92/)
+* **⚡ API Gateway Products:** [http://18.221.209.92/api/products](http://18.221.209.92/api/products)
+* **📊 Grafana Dashboard:** [http://18.221.209.92:3000](http://18.221.209.92:3000) (User: `admin` / Password: `FlipkartAdmin2026!`)
+* **🔍 Eureka Service Registry:** [http://18.221.209.92/eureka/apps](http://18.221.209.92/eureka/apps)
 
 ---
 
