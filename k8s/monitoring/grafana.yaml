@@ -15,6 +15,26 @@ data:
         editable: false
 
 ---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: grafana-dashboards-provider
+  namespace: flipkart-prod
+data:
+  dashboards.yaml: |
+    apiVersion: 1
+    providers:
+      - name: 'flipkart-microservices'
+        orgId: 1
+        folder: 'Production Monitoring'
+        type: file
+        disableDeletion: false
+        updateIntervalSeconds: 15
+        allowUiUpdates: true
+        options:
+          path: /var/lib/grafana/dashboards
+
+---
 apiVersion: apps/v1
 kind: Deployment
 metadata:
@@ -24,6 +44,8 @@ metadata:
     app: grafana
 spec:
   replicas: 1
+  strategy:
+    type: Recreate
   selector:
     matchLabels:
       app: grafana
@@ -45,6 +67,8 @@ spec:
               value: "FlipkartAdmin2026!"
             - name: GF_USERS_ALLOW_SIGN_UP
               value: "false"
+            - name: GF_DASHBOARDS_DEFAULT_HOME_DASHBOARD_PATH
+              value: "/var/lib/grafana/dashboards/flipkart-overview.json"
           resources:
             requests:
               memory: "128Mi"
@@ -56,10 +80,21 @@ spec:
             - name: grafana-datasources
               mountPath: /etc/grafana/provisioning/datasources/datasources.yaml
               subPath: datasources.yaml
+            - name: grafana-dashboards-provider
+              mountPath: /etc/grafana/provisioning/dashboards/dashboards.yaml
+              subPath: dashboards.yaml
+            - name: grafana-dashboard-flipkart
+              mountPath: /var/lib/grafana/dashboards
       volumes:
         - name: grafana-datasources
           configMap:
             name: grafana-datasources
+        - name: grafana-dashboards-provider
+          configMap:
+            name: grafana-dashboards-provider
+        - name: grafana-dashboard-flipkart
+          configMap:
+            name: grafana-dashboard-flipkart
 
 ---
 apiVersion: v1
