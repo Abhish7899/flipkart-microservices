@@ -4,12 +4,9 @@ metadata:
   name: flipkart-ingress
   namespace: flipkart-prod
   annotations:
-    kubernetes.io/ingress.class: nginx
-    nginx.ingress.kubernetes.io/ssl-redirect: "false" # Set true once TLS cert is provisioned
-    nginx.ingress.kubernetes.io/proxy-body-size: "20m"
-    nginx.ingress.kubernetes.io/proxy-read-timeout: "60"
-    cert-manager.io/cluster-issuer: "letsencrypt-prod"
+    traefik.ingress.kubernetes.io/router.entrypoints: web
 spec:
+  ingressClassName: traefik
   # Uncomment tls block when domain & cert-manager are configured
   # tls:
   #   - hosts:
