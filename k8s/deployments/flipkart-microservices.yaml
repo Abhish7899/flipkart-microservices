@@ -270,14 +270,16 @@ spec:
             httpGet:
               path: /actuator/health
               port: 8082
-            initialDelaySeconds: 40
+            initialDelaySeconds: 75
             periodSeconds: 15
+            failureThreshold: 5
           readinessProbe:
             httpGet:
               path: /actuator/health
               port: 8082
-            initialDelaySeconds: 25
+            initialDelaySeconds: 45
             periodSeconds: 10
+            failureThreshold: 5
           resources:
             requests:
               memory: "192Mi"
@@ -341,14 +343,16 @@ spec:
             httpGet:
               path: /actuator/health
               port: 8081
-            initialDelaySeconds: 40
+            initialDelaySeconds: 75
             periodSeconds: 15
+            failureThreshold: 5
           readinessProbe:
             httpGet:
               path: /actuator/health
               port: 8081
-            initialDelaySeconds: 25
+            initialDelaySeconds: 45
             periodSeconds: 10
+            failureThreshold: 5
           resources:
             requests:
               memory: "192Mi"
