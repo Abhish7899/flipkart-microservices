@@ -37,6 +37,7 @@ spec:
           image: grafana/grafana:10.2.0
           ports:
             - containerPort: 3000
+              hostPort: 3000
           env:
             - name: GF_SECURITY_ADMIN_USER
               value: "admin"
