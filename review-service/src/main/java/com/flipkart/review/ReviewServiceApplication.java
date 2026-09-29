@@ -1,4 +1,4 @@
-﻿package com.flipkart.review;
+package com.flipkart.review;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

@@ -1,4 +1,4 @@
-﻿package com.flipkart.inventory;
+package com.flipkart.inventory;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
